@@ -55,7 +55,6 @@
     </div>
 </div>
 {% set formAttrs = ['m2 pb-2', 'formreply-' ~ comment.getId, 'display: none !important;'] %}
-    {% if app.user == true %}
 <div class="d-flex flex-column">
     <div class="flex-grow-1 flex-shrink-1 reply-form">
         <form method="post" action="{{ path('app_comments') }}" class="{{ formAttrs.0 }}" id="{{ formAttrs.1 }}" style="{{ formAttrs.2 }}">
@@ -75,6 +74,5 @@
             <input type="hidden" name="child_csrf" value="{{ csrf_token('child_csrf_token') }}">
         </form>
     </div>
-    {% endif %}
 </div>
 
