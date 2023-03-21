@@ -23,42 +23,37 @@
                                 </div>
                             </div>
                         </div>
-                        {% if app.user == true %}
-                            {{ form_start(parentCommentForm, {'attr': {'class': 'ml-4 mr-4 mb-4 pb-2'}}) }}
-                            <div class="form-group">
-                                {{ form_label(parentCommentForm.content, 'Your Commentary') }}
-                                <textarea class="form-control"
-                                          name="{{ field_name(parentCommentForm.content) }}"
-                                          rows="2"
-                                          required>
-                                </textarea>
-                                {{ form_errors(parentCommentForm.content) }}
-                            </div>
-                            <div class="submit">
-                                <input class="btn btn-primary"
-                                       name="{{ field_name(parentCommentForm.submit) }}"
-                                       type="submit"
-                                       value="Submit">
-                            </div>
-                            {{ form_end(parentCommentForm) }}
-                        {% endif %}
-{#                        <form method="post" action="{{ path('app_comments') }}" class="ml-4 mr-4 mb-4 pb-2">#}
+{#                            {{ form_start(commentForm, {'attr': {'class': 'ml-4 mr-4 mb-4 pb-2'}}) }}#}
 {#                            <div class="form-group">#}
 {#                                {{ form_label(commentForm.content, 'Your Commentary') }}#}
-{#                                {{ form_widget(commentForm.content, {'attr': {'class': 'form-control', 'rows': '2'}}) }}#}
-{#                                {{ form_row(commentForm.content, {'attr': {'class': 'form-control', 'rows': '2'}}) }}#}
+{#                                <textarea class="form-control"#}
+{#                                          name="{{ field_name(commentForm.content) }}"#}
+{#                                          rows="2"#}
+{#                                          required> </textarea>#}
 {#                                {{ form_errors(commentForm.content) }}#}
 {#                            </div>#}
 {#                            <div class="submit">#}
-{#                                {{ form_widget(commentForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}#}
+{#                                <input class="btn btn-primary"#}
+{#                                       name="{{ field_name(commentForm.submit) }}"#}
+{#                                       type="submit"#}
+{#                                       value="Submit">#}
 {#                            </div>#}
-{#                            {{ form_widget(commentForm._token) }}#}
-{#                        </form>#}
-                        {% if app.user == false %}
-                            <div class="text-center mb-2 pb-2">
-                                <p>To leave your commentary, please <a href="{{ path('app_login') }}">log in</a></p>
+{#                            {{ form_end(commentForm) }}#}
+                        <form method="post" action="{{ path('app_comments') }}" class="ml-4 mr-4 mb-4 pb-2">
+                            <div class="form-group">
+                                {{ form_label(commentForm.content, 'Your Commentary') }}
+                                <textarea class="form-control"
+                                          name="{{ field_name(commentForm.content) }}" rows="2" required> </textarea>
+                                {{ form_errors(commentForm.content) }}
                             </div>
-                        {% endif %}
+                            <div class="submit">
+                                <input class="btn btn-primary"
+                                       name="{{ field_name(commentForm.submit) }}"
+                                       type="submit"
+                                       value="Submit">
+                            </div>
+                            <input type="hidden" name="parent_csrf" value="{{ csrf_token('parent_csrf_token') }}">
+                        </form>
                     </div>
                 </div>
             </div>

@@ -58,53 +58,57 @@
     {% if app.user == true %}
 <div class="d-flex flex-column">
     <div class="flex-grow-1 flex-shrink-1 reply-form">
-{#        {{ form_start(childForm, {'attr': {'class': formAttrs.0, 'id': formAttrs.1, 'style': formAttrs.2 }}) }}#}
+        {# tag form with form_row and form_widget #}
+{#        <form method="post" action="{{ path('app_comments') }}" class="{{ formAttrs.0 }}" id="{{ formAttrs.1 }}" style="{{ formAttrs.2 }}">#}
+{#            <div class="form-group">#}
+{#                {{ form_label(parentCommentForm.content, 'Your Commentary') }}#}
+{#                {{ form_widget(parentCommentForm.content, {'attr': {'class': 'form-control'}, 'value': comment.user.userIdentifier }) }}#}
+{#                {{ form_errors(parentCommentForm.content) }}#}
+{#            </div>#}
+{#            <div class="submit">#}
+{#                {{ form_widget(parentCommentForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}#}
+{#            </div>#}
+{#            <input type="hidden" name="child_csrf_token" value="{{ csrf_token('unique_token_id') }}">#}
+{#            <input type="hidden" name="parent_id" value="{{ commentIdValue }}">#}
+{#        </form>#}
+        {# form with form_start and form_end but without form_row or widget #}
+{#        {{ form_start(commentForm, {'attr': {'class': formAttrs.0, 'id': formAttrs.1, 'style': formAttrs.2 }}) }}#}
 {#        <div class="form-group">#}
-{#            {{ form_label(childForm.content, 'Your Commentary') }}#}
+{#            {{ form_label(commentForm.content, 'Your Commentary') }}#}
 {#            <textarea class="form-control"#}
-{#                      name="{{ field_name(childForm.content) }}">@{{ comment.user.userIdentifier }}, </textarea>#}
-{#            {{ form_errors(childForm.content) }}#}
+{#                      name="{{ field_name(commentForm.content) }}" required>@{{ comment.user.userIdentifier }}, </textarea>#}
+{#            {{ form_errors(commentForm.content) }}#}
 {#        </div>#}
 {#        <div class="submit">#}
 {#            <input class="btn btn-primary"#}
-{#                   name="{{ field_name(childForm.submit) }}"#}
+{#                   name="{{ field_name(commentForm.submit) }}"#}
 {#                   type="submit"#}
 {#                   value="Submit">#}
 {#        </div>#}
 {#        <input type="hidden"#}
 {#               name="parent_id"#}
 {#               value="{{ commentIdValue }}">#}
-{#        {{ form_row(childForm.child_token) }}#}
-{#        {{ form_end(childForm) }}#}
-{#        <form method="post" action="{{ path('app_comments') }}" class="{{ formAttrs.0 }}" id="{{ formAttrs.1 }}" style="{{ formAttrs.2 }}">#}
-{#            <div class="form-group">#}
-{#                {{ form_label(childForm.content, 'Your Commentary') }}#}
-{#                {{ form_widget(childForm.content, {'attr': {'class': 'form-control'}, 'value': comment.user.userIdentifier }) }}#}
-{#                {{ form_errors(childForm.content) }}#}
-{#            </div>#}
-{#            <div class="submit">#}
-{#                {{ form_widget(childForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}#}
-{#            </div>#}
-{#            {{ form_widget(childForm.child_token) }}#}
-{#            <input type="hidden" name="parent_id" value="{{ commentIdValue }}">#}
-{#        </form>#}
-        {{ form_start(childCommentForm, {'attr': {'class': formAttrs.0, 'id': formAttrs.1, 'style': formAttrs.2 }}) }}
-        <div class="form-group">
-            {{ form_label(childCommentForm.content, 'Your Commentary') }}
-            <textarea class="form-control"
-                      name="{{ field_name(childCommentForm.content) }}" required>@{{ comment.user.userIdentifier }}, </textarea>
-            {{ form_errors(childCommentForm.content) }}
-        </div>
-        <div class="submit">
-            <input class="btn btn-primary"
-                   name="{{ field_name(childCommentForm.submit) }}"
-                   type="submit"
-                   value="Submit">
-        </div>
-        <input type="hidden"
-               name="parent_id"
-               value="{{ commentIdValue }}">
-        {{ form_end(childCommentForm) }}
+{#        <input type="hidden"#}
+{#               name="child_csrf"#}
+{#               value="{{ csrf_token('child_csrf_token') }}">#}
+{#        {{ form_end(commentForm) }}#}
+        {# complete form tag form #}
+        <form method="post" action="{{ path('app_comments') }}" class="{{ formAttrs.0 }}" id="{{ formAttrs.1 }}" style="{{ formAttrs.2 }}">
+            <div class="form-group">
+                {{ form_label(commentForm.content, 'Your Commentary') }}
+                <textarea class="form-control"
+                          name="{{ field_name(commentForm.content) }}" rows="2"> </textarea>
+                {{ form_errors(commentForm.content) }}
+            </div>
+            <div class="submit">
+                <input class="btn btn-primary"
+                       name="{{ field_name(commentForm.submit) }}"
+                       type="submit"
+                       value="Submit">
+            </div>
+            <input type="hidden" name="parent_id" value="{{ commentIdValue }}">
+            <input type="hidden" name="child_csrf" value="{{ csrf_token('child_csrf_token') }}">
+        </form>
     </div>
     {% endif %}
 </div>
