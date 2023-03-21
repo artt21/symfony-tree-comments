@@ -25,60 +25,6 @@ class CommentController extends AbstractController
 
     }
 
-//    /**
-//     * @Route("/comments", name="app_comments")
-//     */
-//    public function indexAction(Request $request): Response
-//    {
-//
-//        $user = $this->getUser();
-//
-//        $parentComment = new Comment();
-//        $childComment = new Comment();
-//
-//        $parentCommentForm = $this->createForm(CommentType::class, $parentComment, [
-//            'csrf_token_id' => 'parent_comment_csrf_id',
-//        ]);
-//
-//        $childCommentForm = $this->createForm(CommentType::class, $childComment);
-//
-//        $submittedToken = $request->request->get('child_csrf');
-//
-//        $isCsrfTokenValid = $this->isCsrfTokenValid('child_csrf_token', $submittedToken);
-//
-//        $parentCommentForm->handleRequest($request);
-//        $childCommentForm->handleRequest($request);
-//
-//        if ($parentCommentForm->isSubmitted() && $parentCommentForm->isValid() || $childCommentForm->isSubmitted() && $isCsrfTokenValid) {
-//
-//            $this->addComment($parentComment, $user, $request->request->get('parent_id') ?? null);
-//
-//            $this->addFlash('success', 'Commentary added');
-//
-//            return $this->redirectToRoute('app_comments');
-//        }
-//
-////        if ($childCommentForm->isSubmitted() && $childCommentForm->isValid()) {
-////
-////            $this->addComment($childComment, $user, $request->request->get('parent_id') ?? null);
-////
-////            $this->addFlash('success', 'Commentary added');
-////
-////            return $this->redirectToRoute('app_comments');
-////        }
-//
-//        $allComments = $this->entityManager->getRepository(Comment::class)->findAll();
-//
-//        $sortedComments = $this->sortComments($allComments);
-//
-//        return $this->renderForm('comments/index.html.twig', [
-//            'parentCommentForm' => $parentCommentForm,
-//            'childCommentForm' => $childCommentForm,
-//            'sortedComments' => $sortedComments,
-//        ]);
-//
-//    }
-
     /**
      * @Route("/comments", name="app_comments")
      */

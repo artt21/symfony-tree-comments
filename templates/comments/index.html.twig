@@ -23,22 +23,6 @@
                                 </div>
                             </div>
                         </div>
-{#                            {{ form_start(commentForm, {'attr': {'class': 'ml-4 mr-4 mb-4 pb-2'}}) }}#}
-{#                            <div class="form-group">#}
-{#                                {{ form_label(commentForm.content, 'Your Commentary') }}#}
-{#                                <textarea class="form-control"#}
-{#                                          name="{{ field_name(commentForm.content) }}"#}
-{#                                          rows="2"#}
-{#                                          required> </textarea>#}
-{#                                {{ form_errors(commentForm.content) }}#}
-{#                            </div>#}
-{#                            <div class="submit">#}
-{#                                <input class="btn btn-primary"#}
-{#                                       name="{{ field_name(commentForm.submit) }}"#}
-{#                                       type="submit"#}
-{#                                       value="Submit">#}
-{#                            </div>#}
-{#                            {{ form_end(commentForm) }}#}
                         <form method="post" action="{{ path('app_comments') }}" class="ml-4 mr-4 mb-4 pb-2">
                             <div class="form-group">
                                 {{ form_label(commentForm.content, 'Your Commentary') }}
